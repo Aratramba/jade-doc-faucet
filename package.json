@@ -1,0 +1,33 @@
+{
+  "name": "jade-doc-faucet",
+  "version": "0.1.0",
+  "description": "Jade documentation output faucet",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js | faucet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aratramba/jade-doc-faucet.git"
+  },
+  "keywords": [
+    "jade",
+    "jade-doc",
+    "documentation",
+    "faucet"
+  ],
+  "author": "Arjen Scherff-de Water",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aratramba/jade-doc-faucet/issues"
+  },
+  "homepage": "https://github.com/Aratramba/jade-doc-faucet#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "faucet": "0.0.1",
+    "meow": "^3.4.1",
+    "tape": "^4.2.1",
+    "through2": "^2.0.0",
+    "truncate": "^2.0.0"
+  }
+}
