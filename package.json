@@ -1,6 +1,6 @@
 {
   "name": "jade-doc-faucet",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Jade documentation output faucet",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Aratramba/jade-doc-faucet/issues"
+  },
+  "bin": {
+    "jade-doc-faucet": "cli.js"
   },
   "homepage": "https://github.com/Aratramba/jade-doc-faucet#readme",
   "dependencies": {
