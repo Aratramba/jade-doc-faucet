@@ -4,7 +4,7 @@
 
 
 var meow = require('meow');
-var jdf = require('.');
+var jdf = require('./index');
 
 meow({
   help: [
