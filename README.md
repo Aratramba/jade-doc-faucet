@@ -6,3 +6,6 @@ Pretty output for a [Jade-doc](http://github.com/Aratramba/jade-doc/) stream.
 ```bash
 jade-doc input.jade | jade-doc-faucet
 ```
+
+
+![pretty jade-doc output](screen.gif)
