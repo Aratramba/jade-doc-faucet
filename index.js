@@ -16,7 +16,6 @@ stream.on('data', function(obj){
   line.push('* '+ obj.meta.name);
   line.push(' - ');
   line.push(chalk.dim(truncate(obj.output, 40)));
-  line.push('\n');
 
   console.log(line.join(''));
 });
