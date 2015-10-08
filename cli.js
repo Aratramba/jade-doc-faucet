@@ -14,4 +14,4 @@ meow({
   ]
 });
 
-process.stdin.pipe(jdf).pipe(process.stdout);
+process.stdin.pipe(jdf);
