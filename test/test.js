@@ -1,11 +1,68 @@
 'use strict';
 /* global require */
 
-var spawn = require('tape-spawn');
+
+var jdf = require('../index');
+var JSONStream = require('JSONStream');
+var through2 = require('through2');
 var test = require('tape');
+
  
 test('spawn jade-doc-faucet', function (assert){
-  var st = spawn(assert, 'jade-doc ./fixtures/mixins.jade | node cli.js');
-  st.stdout.match('Generating Jade-doc\n\n* mixin - <div>this is a mixin foo</div><div>this …\n\nJade-doc complete\n');
-  st.end();
+
+
+  var stream = through2({ objectMode: true },
+    function(chunk, enc, next){
+      this.push(chunk);
+      next();
+    }, 
+    function(cb){
+      cb();
+    }
+  );
+
+  var assertStream = through2();
+  var counter = 0;
+  assert.plan(3);
+
+  assertStream.on('data', function(data){
+    var actual = data.toString();
+    var expected;
+
+    switch(counter){
+      case 0:
+      expected = 'Generating Jade-doc\n';
+      break;
+
+      case 1:
+      expected = 'extends - <div class=\'some-tag\'>this is some tag f…\n';
+      break;
+
+      case 2:
+      expected = 'Jade-doc complete';
+      break;
+    }
+
+    assert.equal(actual, expected);
+    ++counter;
+  });
+
+  stream.pipe(JSONStream.stringify()).pipe(jdf.in);
+  jdf.out.pipe(assertStream);
+
+  stream.push({
+    'meta': {
+      'name': 'extends',
+      'locals': {
+        'foo': 'foo'
+      }
+    },
+    'file': 'test/fixtures/extends.jade',
+    'source': 'extends tag.jade',
+    'output': '<div class=\'some-tag\'>this is some tag foo</div><div class=\'some-other-tag\'>this is some other tag</div>'
+  });
+  stream.end();
 });
+
+
+

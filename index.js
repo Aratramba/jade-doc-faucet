@@ -1,29 +1,44 @@
 'use strict';
-/* global require, module, console */
+/* global require, module */
 
 var JSONStream = require('JSONStream');
 var truncate = require('truncate');
 var chalk = require('chalk');
-
+var through2 = require('through2');
 
 /**
  * Pretty terminal output for jade-doc stream
  */
 
-var stream = JSONStream.parse('*');
-stream.on('data', function(obj){
+var outStream = through2(function(chunk, enc, next){
+  this.push(chunk.toString());
+  next();
+});
+
+
+var inStream = JSONStream.parse('*');
+inStream.on('data', function(obj){
   var line = [];
-  line.push('* '+ obj.meta.name);
-  line.push(' - ');
+
+  // show if name is present
+  if(typeof obj.meta.name !== 'undefined'){
+    line.push(obj.meta.name);
+    line.push(' - ');
+  }
+
+  // add truncated html output
   line.push(chalk.dim(truncate(obj.output, 40)));
 
-  console.log(line.join(''));
+  outStream.push(line.join('') +'\n');
 });
 
-console.log(chalk.green('Generating Jade-doc\n'));
+outStream.push(chalk.green('Generating Jade-doc\n'));
 
-stream.on('end', function(){
-  console.log(chalk.green('Jade-doc complete'));
+inStream.on('end', function(){
+  outStream.push(chalk.green('Jade-doc complete'));
 });
 
-module.exports = stream;
+module.exports = {
+  in: inStream,
+  out: outStream
+};
