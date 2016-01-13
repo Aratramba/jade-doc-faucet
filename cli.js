@@ -4,15 +4,15 @@
 
 
 var meow = require('meow');
-var jdf = require('./index');
+var faucet = require('./index');
 
 meow({
   help: [
     'Usage',
-    '  $ jade-doc --input file.jade | jade-doc-faucet',
+    '  $ pug-doc --input file.jade | pug-doc-faucet',
     '',
   ]
 });
 
-process.stdin.pipe(jdf.in);
-jdf.out.pipe(process.stdout);
+process.stdin.pipe(faucet.in);
+faucet.out.pipe(process.stdout);

@@ -7,7 +7,7 @@ var chalk = require('chalk');
 var through2 = require('through2');
 
 /**
- * Pretty terminal output for jade-doc stream
+ * Pretty terminal output for pug-doc stream
  */
 
 var outStream = through2(function(chunk, enc, next){
@@ -32,10 +32,10 @@ inStream.on('data', function(obj){
   outStream.push(line.join('') +'\n');
 });
 
-outStream.push(chalk.green('Generating Jade-doc\n'));
+outStream.push(chalk.green('Generating Pug-doc\n'));
 
 inStream.on('end', function(){
-  outStream.push(chalk.green('Jade-doc complete'));
+  outStream.push(chalk.green('Pug-doc complete'));
 });
 
 module.exports = {

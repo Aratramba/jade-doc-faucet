@@ -1,6 +1,6 @@
 {
   "name": "pug-doc-faucet",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "Pug (Jade) documentation output faucet",
   "main": "index.js",
   "scripts": {
@@ -23,9 +23,7 @@
   "bugs": {
     "url": "https://github.com/Aratramba/pug-doc-faucet/issues"
   },
-  "bin": {
-    "pug-doc-faucet": "cli.js"
-  },
+  "bin": "cli.js",
   "homepage": "https://github.com/Aratramba/pug-doc-faucet#readme",
   "dependencies": {
     "JSONStream": "^1.0.6",

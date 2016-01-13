@@ -1,11 +1,11 @@
-# Jade-doc Faucet
-Pretty output for a [Jade-doc](http://github.com/Aratramba/jade-doc/) stream.
+# Pug-doc Faucet
+Pretty output for a [Pug-doc](http://github.com/Aratramba/pug-doc/) stream.
 
 
 ### Usage
 ```bash
-jade-doc input.jade | jade-doc-faucet
+pug-doc input.jade | pug-doc-faucet
 ```
 
 
-![pretty jade-doc output](screen.gif)
+![pretty pug-doc output](screen.gif)

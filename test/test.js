@@ -8,7 +8,7 @@ var through2 = require('through2');
 var test = require('tape');
 
  
-test('spawn jade-doc-faucet', function (assert){
+test('spawn pug-doc-faucet', function (assert){
 
 
   var stream = through2({ objectMode: true },
@@ -31,7 +31,7 @@ test('spawn jade-doc-faucet', function (assert){
 
     switch(counter){
       case 0:
-      expected = 'Generating Jade-doc\n';
+      expected = 'Generating Pug-doc\n';
       break;
 
       case 1:
@@ -39,7 +39,7 @@ test('spawn jade-doc-faucet', function (assert){
       break;
 
       case 2:
-      expected = 'Jade-doc complete';
+      expected = 'Pug-doc complete';
       break;
     }
 
